@@ -1,0 +1,60 @@
+.button {
+    cursor: pointer;
+    padding: 1em;
+    font-size: var(--btn-font-size);
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1rem;
+}
+
+.primary {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+
+    a {
+        color: hsl(var(--primary-foreground));
+    }
+}
+
+.secondary {
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+
+    a {
+        color: hsl(var(--secondary-forground));
+    }
+}
+
+.destructive {
+    background-color: hsl(var(--destructive));
+    color: hsl(var(--destructive-foreground));
+
+    a {
+        color: hsl(var(--destructive-foreground));
+    }
+}
+
+.ghost {
+    background: none;
+    padding: 0;
+    color: hsl(var(--foreground));
+    svg, a {
+        color: hsl(var(--foreground));
+        cursor: pointer;
+    }
+    a {
+        color: hsl(var(--foreground));
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .button {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .button {
+        font-size: 1.5rem;
+    }
+}

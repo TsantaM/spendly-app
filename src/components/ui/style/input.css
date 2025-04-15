@@ -1,0 +1,92 @@
+.input_form {
+    cursor: text;
+    padding: 0.75em 1em;
+    border-radius: var(--radius);
+    background: hsl(var(--background));
+    color:  hsl(var(--accent-foreground));
+    border: solid 3px hsl(var(--accent-foreground));
+    outline: none;
+    font-size: 1rem;
+    font-family: content;
+}
+
+.input_form::placeholder {
+    color: hsl(var(--accent-foreground));
+    font-family: content;
+}
+
+
+.textarea {
+    cursor: text;
+    padding: 0.75em 1em;
+    border-radius: var(--radius);
+    background: hsl(var(--background));
+    color:  hsl(var(--accent-foreground));
+    border: solid 3px hsl(var(--accent-foreground));
+    outline: none;
+    font-size: 1rem;
+    resize: none;
+    font-family: content;
+}
+
+.textarea::placeholder {
+    color: hsl(var(--accent-foreground));
+    font-family: content;
+}
+
+.datepicker {
+    input {
+        width: 100% !important;
+        cursor: text;
+        padding: 0.75em 1em;
+        border-radius: var(--radius);
+        background: hsl(var(--background));
+        color:  hsl(var(--foreground));
+        border: solid 3px hsl(var(--accent-foreground));
+        outline: none;
+        font-size: 1rem;
+        resize: none;
+        font-family: content;
+    }
+
+    input::placeholder {
+        color:  hsl(var(--foreground));
+    }
+}
+
+.react-datepicker__header {
+    background-color: hsl(var(--background)) !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+    color: hsl(var(--foreground));
+}
+
+.react-datepicker__day-names {
+    .react-datepicker__day-name {
+        color: hsl(var(--foreground));
+    }
+}
+
+.react-datepicker__month-container {
+    background: hsl(var(--secondary));
+    .react-datepicker__week {
+        .react-datepicker__day {
+            color: hsl(var(--secondary-foreground));
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .input_form, .input_form::placeholder {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .input_form, .input_form::placeholder {
+        font-size: 1.5rem;
+    }
+}

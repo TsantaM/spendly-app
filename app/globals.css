@@ -1,0 +1,38 @@
+@import '../src/components/ui/style/theme.css';
+@font-face {
+  font-family: title;
+  src: url(../public/fonts/Quicksand-Bold.ttf);
+}
+@font-face {
+  font-family: content;
+  src: url(../public/fonts/Quicksand-Regular.ttf);
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: default;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  font-family: content;
+}
+
+/* Font families */
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h6 {
+  font-family: title;
+}
+
+p {
+  font-family: content;
+}

@@ -1,0 +1,115 @@
+.sectionform {
+    min-height: 100vh;
+    padding: 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .form_container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+        width: 100%;
+        height: 75vh;
+        .text {
+            background: hsl(var(--primary));
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1vw;
+            padding: 5vw;
+
+            h1 {
+                font-size: 5rem;
+            }
+            p {
+                font-size: 2rem;
+            }
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2vw;
+            height: 100%;
+            width: 100%;
+            padding: 5vw;
+            form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 2vw;
+                /* background: red; */
+            }
+
+            .sign_link {
+                align-self: end;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    #sectionform {
+        .form_container {
+            grid-template-columns: 1fr;
+            .text {
+                align-items: start;
+                h1 {
+                    font-size: 3rem;
+                }
+                p {
+                    font-size: 2rem;
+                }
+            }
+            .form {
+                gap: 5vw;
+                form {
+                    gap: 5vw;
+                    .input_form {
+                        font-size: 2rem;
+                    }
+                    .input_form::placeholder {
+                        font-size: 2rem;
+                    }
+
+                    .button {
+                        font-size: 2rem;
+                    }
+                }
+                a {
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width: 768px) {
+    #sectionform {
+        .form_container {
+            grid-template-columns: 1fr;
+            .text {
+                align-items: start;
+                h1 {
+                    font-size: 2rem;
+                }
+                p {
+                    font-size: 1rem;
+                }
+            }
+            .form {
+                gap: 5vw;
+                form {
+                    gap: 5vw;
+                }
+            }
+        }
+    }
+}
