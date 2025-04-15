@@ -60,7 +60,7 @@ export default function Connexion() {
       <div className="form_container">
         <div className="text">
           <h1>Welcome Back</h1>
-          <p>Connectez vous à votre compte pour voir vos notes, absences et emploi du temps</p>
+          <p>Connectez vous à votre compte pour traiter vos dépenses et revenues</p>
         </div>
         <form action="" onSubmit={handleSubmit(onSubmit)} className="form">
 
