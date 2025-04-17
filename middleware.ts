@@ -1,26 +1,16 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
+import { NextRequest, NextResponse } from 'next/server';
+import { getSessionCookie } from 'better-auth/cookies';
 
-export async function middleware(req: NextRequest) {
-    const token = await getToken({req})
+export async function middleware(request: NextRequest) {
+  const sessionCookie = getSessionCookie(request);
 
-    if(!token) {
-        return NextResponse.redirect(new URL('/', req.url))
-    }
+  if (!sessionCookie) {
+    return NextResponse.redirect(new URL('/connexion', request.url));
+  }
 
-    if(req.nextUrl.pathname.startsWith('/admin') && token.role !== "admin") {
-        if(!token) {
-            return NextResponse.redirect(new URL('/', req.url))
-        }else {
-            return NextResponse.redirect(new URL('/user', req.url))
-        }
-    }
-
-    if(req.nextUrl.pathname.startsWith('/user') && !token) {
-        return NextResponse.redirect(new URL('/', req.url))
-    }
+  return NextResponse.next();
 }
 
 export const config = {
-    matcher: ["/admin/:path*", "/user/:path*"]
-}
+  matcher: ['/dashboard'], // Spécifiez les routes protégées ici
+};

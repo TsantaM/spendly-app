@@ -5,17 +5,23 @@ import { authClient } from "@/src/config/lib/auth-clients";
 import { useRouter } from "next/navigation";
 import "./dashboard.css"
 import ToggleTheme from "@/src/components/ui/components/toogleTheme";
+import { CustomLink } from "@/src/components/ui/components/link";
+import { useSessionStore } from "@/src/store/useSessionStore";
 
 
 export default function UserInterface() {
 
     const router = useRouter()
+    const sessionUpdater = useSessionStore((state) => state.sessionUpdater)
 
     const signOut = async () => {
         await authClient.signOut({
             fetchOptions: {
                 onSuccess: () => {
-                    router.push("/connexion")
+                    const session = authClient.getSession()
+                    console.log(session)
+                    sessionUpdater(null, null, false)
+                    router.push("/")
                 }
             }
         })
@@ -25,19 +31,24 @@ export default function UserInterface() {
         isPending,
         error,
     } = authClient.useSession();
+    const { user } = useSessionStore()
+
 
     if (isPending) return (
         <section className="dashboard">
             <p>Chargement...</p>
         </section>
     );
+
     if (error) return (<section className="dashboard">
         <p>Erreur : {error.message}</p>
     </section>);
 
     return <section className="dashboard">
         <h1>Bienvenue <span>{session?.user?.name}</span></h1>
-        <ToggleTheme/>
+        <ToggleTheme />
         <Button event={() => (signOut())} content="Deconnexion" />
+        <CustomLink href="/" content="Retourner à l'acceuil" variant="ghost" />
+        {user ? <p>Bonjour {user.name}</p> : <p>Aucun utilisateur connecté</p>}
     </section>;
 }

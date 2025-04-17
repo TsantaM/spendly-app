@@ -21,6 +21,15 @@
 - Prisma ORM
 - BetterAuth
 
+## Mise à jour
+------------------------------------------------------------------------------- || -------------------------------------------------------------------------------
+
+ - 17 avril : Amélioration du système d'authentification / Inscription / Deconnexion en intégrant les donnée utilisateur dans un state zustand : useSessionStore()
+ 
+ Etape suivante : mise en place du dashboard user et du système d'ajout et de visionnage des dépenses.
+
+------------------------------------------------------------------------------- || -------------------------------------------------------------------------------
+
 ## Démarrage local
 
 ```bash

@@ -1,6 +1,5 @@
 "use client"
 import "./Inscription.css"
-import { authClient } from "@/src/config/lib/auth-clients"
 import { z } from "zod"
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,7 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../../ui/components/button";
 import Input from "../../ui/components/input";
 import { useRouter } from "next/navigation";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import { Session, User, useSessionStore } from "@/src/store/useSessionStore";
+import { authClient } from "@/src/config/lib/auth-clients";
 
 
 
@@ -33,47 +34,22 @@ export default function Inscription() {
   //   success: false
   // })
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<signForm_type>({ resolver: zodResolver(signSchema) })
+  const { signUp, success, user } = useSessionStore()
+  const sessionUpdater = useSessionStore((state) => state.sessionUpdater)
   const router = useRouter()
 
   const onSubmit = async (data: signForm_type) => {
-    const { name, password, email } = data;
+    const { name, email, password, } = data;
+    await signUp(name, email, password)
+    const session = await authClient.getSession();
+    console.log(session.data);
+    if (session) {
+      sessionUpdater(session.data?.user as User, session.data?.session as Session, true)
+      console.log(user, success);
+    }
 
-    try {
-      const { data: responseData, error } = await authClient.signUp.email(
-        {
-          email, // user email address
-          password, // user password -> min 8 characters by default
-          name, // user display name
-          callbackURL: "/dashboard"
-        },
-        {
-          onRequest: () => {
-            // Afficher un indicateur de chargement
-          },
-          onSuccess: () => {
-            toast.success("Inscription Réussite", {
-              className: 'toast',
-              draggable: true
-            })
-            router.push("/dashboard")
-          },
-          onError: (ctx) => {
-            // Afficher le message d'erreur
-            alert(ctx.error.message);
-            console.log(ctx.error.message);
-          },
-        }
-      );
-
-      if (error) {
-        // Gérer l'erreur si nécessaire
-        console.error("Erreur lors de l'inscription :", error);
-      } else {
-        // Gérer la réponse réussie si nécessaire
-        console.log("Inscription réussie :", responseData);
-      }
-    } catch (err) {
-      console.error("Une exception s'est produite :", err);
+    if (success) {
+      router.push("/dashboard")
     }
   };
 
@@ -109,7 +85,7 @@ export default function Inscription() {
         </form>
       </div>
 
-      <ToastContainer/>
+      <ToastContainer />
     </section>
 
   )

@@ -6,9 +6,11 @@ import { useForm } from "react-hook-form"
 import { z } from 'zod'
 import Input from "../../ui/components/input"
 import { Button } from "../../ui/components/button"
-import { useSession, authClient } from "@/src/config/lib/auth-clients" 
+import { useSession} from "@/src/config/lib/auth-clients"
 import { useRouter } from "next/navigation";
 import { CustomLink } from "../../ui/components/link"
+import { useSessionStore } from "@/src/store/useSessionStore"
+import { toast, ToastContainer } from "react-toastify"
 
 
 const LoginSchema = z.object({
@@ -21,33 +23,22 @@ type log_type = z.infer<typeof LoginSchema>
 export default function Connexion() {
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<log_type>({ resolver: zodResolver(LoginSchema) })
-  const router = useRouter()
+  const router = useRouter();
+
+
+  const { login, success, error } = useSessionStore()
+
 
   const onSubmit = async (formData: log_type) => {
-    const { email, password } = formData;
+    const { email, password } = formData
+    await login(email, password)
+    if (success) {
+      router.push("/dashboard")
+    }
 
-    try {
-      await authClient.signIn.email(
-        {
-          email,
-          password,
-          callbackURL: "/dashboard",
-        },
-        {
-          onRequest: () => {
-            // Afficher un indicateur de chargement
-          },
-          onSuccess: () => {
-            router.push("/dashboard")
-          },
-          onError: (ctx) => {
-            alert(ctx.error.message);
-            console.error("Erreur lors de la connexion :", ctx.error);
-          },
-        }
-      )
-    } catch (err) {
-      console.error("Une exception s'est produite :", err);
+    if(error) {
+      console.log(error);
+      toast(error.error.message)
     }
   };
 
@@ -64,7 +55,7 @@ export default function Connexion() {
         </div>
         <form action="" onSubmit={handleSubmit(onSubmit)} className="form">
 
-          <Input type="email" placeholder="username" register={register("email")} />
+          <Input type="email" placeholder="email" register={register("email")} />
           {errors.email && <p>{errors.email.message}</p>}
 
           <Input type="password" placeholder="password" register={register("password")} />
@@ -74,11 +65,13 @@ export default function Connexion() {
 
           <Button content="Connexion" variant="primary" />
 
-          <CustomLink href="/inscription" content="Je n'ai pas encore de compte" variant="ghost"/>
-        
+          <CustomLink href="/inscription" content="Je n'ai pas encore de compte" variant="ghost" />
+
         </form>
 
       </div>
+
+      <ToastContainer/>
 
     </section>
   )
