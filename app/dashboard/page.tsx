@@ -3,7 +3,7 @@ import { Button } from "@/src/components/ui/components/button";
 // import Link from "next/link";
 import { authClient } from "@/src/config/lib/auth-clients";
 import { useRouter } from "next/navigation";
-import "./dashboard.css"
+import "./styles/dashboard-landing-page.css"
 import ToggleTheme from "@/src/components/ui/components/toogleTheme";
 import { CustomLink } from "@/src/components/ui/components/link";
 import { useSessionStore } from "@/src/store/useSessionStore";
@@ -44,10 +44,10 @@ export default function UserInterface() {
         <p>Erreur : {error.message}</p>
     </section>);
 
-    return <section className="dashboard">
+    return <section className="dashboard-landing">
         <h1>Bienvenue <span>{session?.user?.name}</span></h1>
         <ToggleTheme />
-        <Button event={() => (signOut())} content="Deconnexion" />
+        <Button event={() => (signOut())} content="Deconnexion" variant="destructive"/>
         <CustomLink href="/" content="Retourner à l'acceuil" variant="ghost" />
         {user ? <p>Bonjour {user.name}</p> : <p>Aucun utilisateur connecté</p>}
     </section>;

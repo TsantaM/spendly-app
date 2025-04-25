@@ -1,0 +1,26 @@
+.content {
+  /* position: fixed; */
+  width: 100%;
+  z-index: 1;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  .content_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: hsl(var(--primary));
+    padding: 2vw 3vw;
+    h1 {
+      color: hsl(var(--primary-foreground));
+      font-size: 1.5rem;
+    }
+  }
+
+  .content_container {
+    max-width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    padding: 2vw 3vw;
+  }
+}
