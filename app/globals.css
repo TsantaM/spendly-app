@@ -33,6 +33,6 @@ h1, h2, h3, h4, h6 {
   font-family: title;
 }
 
-p {
+p, small {
   font-family: content;
 }

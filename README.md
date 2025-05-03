@@ -21,7 +21,6 @@
 - Prisma ORM
 - BetterAuth
 - Zustand
-- Tanstack/React Query
 
 ## Mise à jour
 ------------------------------------------------------------------------------- || -------------------------------------------------------------------------------
@@ -33,7 +32,12 @@
 
  - 25 avril : On est en retard ok ! Toutes ce qui a été fait depuis : Migrations à la version 6.6.0 de Prisma. Mise en place des server action qui vont gérer les manipulations des dépenses (non testées)
 
- Etape suivant : Terminer l'UI/UX du dashboard utilisateur, c'est à dire côté front. Ensuite branchement du front aux server action en utilisant Tanstack/React Query
+ - 02 mai : On a enfin fini le MVP ! Tout est prêt ! Le système d'inscription et d'authentification, l'insertion et la suppression des dépenses et des revenues dans la base de donnée et le calcul en temps réèl du total des revenues, des dépenses, et le reste de l'argent.
+
+ Prochaines features envisagée (je deverai ça un jour ! Mais pas aujourd'hui ! Bon un jour pour un Dev ça veut souvent dire jamais T_T) :
+  - Système de modification des dépenses
+  - Système de filtre de récupérétion des data en fonction de la date, du nom, etc...
+  - Essayer d'ajouter Tanstack Query pour faciliter les requêtes
 
 ------------------------------------------------------------------------------- || -------------------------------------------------------------------------------
 

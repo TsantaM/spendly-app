@@ -1,7 +1,7 @@
 import './styles/layout.css'
 import type { Metadata } from "next";
-import HeaderDashboard from "./_components/sidebar";
 import DashboardHeader from "./_components/dashboard-header";
+import CardsSold from './_components/cards-sold';
 
 export const metadata: Metadata = {
   title: "Spendly - Dashboard",
@@ -16,13 +16,9 @@ export default function DashboardLayout({
 
   return (
     <>
-      <HeaderDashboard />
-      <div className="content">
-        <DashboardHeader />
-        <div className="content_container">
-          {children}
-        </div>
-      </div>
+      <DashboardHeader />
+      <CardsSold/>
+      {children}
     </>
   );
 }

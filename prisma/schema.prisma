@@ -20,6 +20,16 @@ model Spending {
   user      user     @relation(fields: [UserId], references: [id])
 }
 
+model Incomes {
+  id        String   @id @default(uuid())
+  UserId    String
+  motif     String
+  montant   Float
+  date      DateTime @default(now())
+  createdAt DateTime @default(now())
+  user      user     @relation(fields: [UserId], references: [id])
+}
+
 model account {
   id                    String    @id
   accountId             String
@@ -50,16 +60,17 @@ model session {
 }
 
 model user {
-  id              String    @id
+  id              String     @id
   name            String
-  email           String    @unique
+  email           String     @unique
   emailVerified   Boolean
   image           String?
   createdAt       DateTime
   updatedAt       DateTime
-  username        String?   @unique
+  username        String?    @unique
   displayUsername String?
   Spending        Spending[]
+  Incomes         Incomes[]
   account         account[]
   session         session[]
 }

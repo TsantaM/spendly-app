@@ -3,9 +3,22 @@
 import { PrismaClient } from "../generate/prisma"
 const prisma = new PrismaClient()
 
-// Add a new Spending
+// Get All Incomes
 
-export async function AddSpending({
+export async function GetAllIncomes({id} : {id: string}) {
+    const result = await prisma.incomes.findMany({
+        where: {
+            UserId: id
+        },
+
+    })
+
+    return result
+}
+
+// Add a new incomes
+
+export async function AddIncomes({
     motif, montant, id, date
 }: {
     motif: string,
@@ -13,7 +26,7 @@ export async function AddSpending({
     id: string,
     date: Date
 }) {
-    await prisma.spending.create({
+    await prisma.incomes.create({
         data: {
             motif: motif,
             montant: montant,
@@ -23,28 +36,16 @@ export async function AddSpending({
                 }
             },
             date: date
-        },
-    })
-}
-
-// Fetch All Spending
-
-export async function GetSpending({ id }: { id: string }) {
-    const results = await prisma.spending.findMany({
-        where: {
-            UserId: id
         }
     })
-
-    return results
 }
 
-// Update One Spending
+// Update one Incomes
 
-export async function UpdateSpending({
+export async function UpdateIncomes({
     id, motif, montant, date
 }: { id: string, motif: string, montant: number, date: Date }) {
-    await prisma.spending.update({
+    await prisma.incomes.update({
         where: {
             id: id
         },
@@ -56,20 +57,20 @@ export async function UpdateSpending({
     })
 }
 
-// Delete One Spending
+// Delete One Incomes
 
-export async function DeleteSpending({ id }: { id: string }) {
-    await prisma.spending.delete({
+export async function DeleteIncomes({ id }: { id: string }) {
+    await prisma.incomes.delete({
         where: {
             id: id
         }
     })
 }
 
-// Calcule du total des dépenses
+// Calcule du total des revenues
 
-export async function TotalDepenses({ id }: {id: string}) {
-    const total = prisma.spending.aggregate({
+export async function TotalIncomes({ id }: {id: string}) {
+    const total = prisma.incomes.aggregate({
         where: {
            UserId : id
         },
