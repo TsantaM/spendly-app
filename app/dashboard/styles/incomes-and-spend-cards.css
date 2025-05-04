@@ -1,0 +1,58 @@
+.card {
+    border-radius: 1rem;
+    position: relative;
+    z-index: 2;
+    padding: 1vw 2vw;
+    height: 100%;
+
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1vw;
+
+        .titles {
+            h3 {
+                color: hsl(var(--foreground));
+                font-size: 1rem;
+            }
+        }
+
+        p {
+            font-size: 2rem;
+            font-weight: bold;
+
+            span {
+                color: hsl(var(--primary));
+            }
+        }
+    }
+
+    button {
+        width: 100%;
+        align-self: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3vw;
+    }
+}
+
+.card::before {
+    transition: all 0.5s ease;
+    border-radius: 1rem;
+    content: "";
+    display: block;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: hsl(var(--secondary));
+    opacity: 0.5;
+}
+
+.card:hover::before {
+    opacity: 1;
+}

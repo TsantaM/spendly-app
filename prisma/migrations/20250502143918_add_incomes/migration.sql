@@ -1,0 +1,14 @@
+-- CreateTable
+CREATE TABLE "Incomes" (
+    "id" TEXT NOT NULL,
+    "UserId" TEXT NOT NULL,
+    "motif" TEXT NOT NULL,
+    "montant" DOUBLE PRECISION NOT NULL,
+    "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Incomes_pkey" PRIMARY KEY ("id")
+);
+
+-- AddForeignKey
+ALTER TABLE "Incomes" ADD CONSTRAINT "Incomes_UserId_fkey" FOREIGN KEY ("UserId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

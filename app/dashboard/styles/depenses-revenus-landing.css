@@ -1,0 +1,127 @@
+#depenses-landing {
+    position: relative;
+    z-index: 10;
+    background: hsl(var(--accent));
+    padding: 3vw 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    width: 100%;
+
+    h2 {
+        text-align: center;
+    }
+
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2vw;
+
+        .form-container {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2vw;
+        }
+
+        .button {
+            width: 100%;
+        }
+    }
+}
+
+#depenses-list {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 5vw;
+    padding: 3vw 5vw;
+
+    .list-container {
+        width: 100%;
+        display: grid;
+        gap: 2vw;
+    }
+
+    .s3-grid {
+        grid-template-columns: repeat(4, 1fr);
+        align-items: start;
+        justify-content: start;
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            gap: 2vw;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #depenses-landing {
+        min-height: 100vh;
+        padding: 10vw 5vw;
+        gap: 10vw;
+
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        form {
+            gap: 10vw;
+
+            .form-container {
+                grid-template-columns: 1fr;
+                gap: 10vw;
+
+                .input_form {
+                    font-size: 1.5rem;
+                }
+            }
+
+            .button {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    #depenses-list {
+        .section3-content {
+            gap: 5vw;
+            .card {
+                padding: 5vw;
+                padding: 3vw 5vw;
+                gap: 5vw;
+                .card-content {
+                    gap: 5vw;
+                    .titles {
+                        h3 {
+                            font-size: 2rem;
+                        }
+                    }
+                }
+                .buttons {
+                    gap: 5vw;
+                }
+            }
+        }
+
+        .s3-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5vw;
+        }
+
+        .s3-flex {
+            .card {
+                .card-content {
+                    flex-direction: column;
+                    align-items: start;
+                }
+            }
+        }
+    }
+}

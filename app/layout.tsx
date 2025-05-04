@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import 'react-datepicker/dist/react-datepicker.css';
 import ThemeManager from "@/src/components/ui/components/ThemeManager";
+import GetSessionUserOnLoad from "@/src/components/effetcs/getSessionUserOnLoad";
 
 export const metadata: Metadata = {
   title: "Spendly - Finance Traker",
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={""}>
+        <GetSessionUserOnLoad/>
         <ThemeManager />
           {children}
       </body>

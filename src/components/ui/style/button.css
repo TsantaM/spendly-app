@@ -47,6 +47,42 @@
     }
 }
 
+.hover:hover {
+    position: relative;
+    z-index: 110;
+    color: hsl(var(--foreground));
+}
+
+.hover:active {
+    position: relative;
+    background: none;
+    color: hsl(var(--foreground));
+    font-weight: bold;
+    transition: all 0.15s ease;
+}
+
+
+.hover:hover::before {
+    content: "";
+    display: block;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    position: absolute;
+    z-index: -1;
+    top: -5px;
+    left: -5px;
+    background: linear-gradient(
+        45deg,
+        hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--destructive)),
+        hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--destructive))
+    );
+    background-size: 600%;
+    border-radius: var(--radius);
+    filter: blur(5px);
+    animation: glowing 20s infinite linear;
+
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
     .button {
         font-size: 1.5rem;
@@ -56,5 +92,17 @@
 @media (max-width: 768px) {
     .button {
         font-size: 1.5rem;
+    }
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
     }
 }

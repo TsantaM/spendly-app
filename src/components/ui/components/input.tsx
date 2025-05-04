@@ -1,3 +1,5 @@
+"use client"
+
 import '../style/input.css'
 import type { Control, UseFormRegisterReturn } from "react-hook-form";
 import React from 'react';
@@ -6,7 +8,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
-type inputType = 'text' | 'email' | 'password'
+type inputType = 'text' | 'email' | 'password' | "number"
 
 type InputProps = {
     type: inputType,
